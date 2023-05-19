@@ -4,6 +4,7 @@ import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function Gigs() {
   const [sort, setSort] = useState("sales");
@@ -12,7 +13,7 @@ function Gigs() {
   const maxRef = useRef();
 
   const { search } = useLocation() //destructureing
-
+ 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
     queryFn: () =>
@@ -25,12 +26,14 @@ function Gigs() {
         }),
   });
 
-  console.log(data);
-
   const reSort = (type) => {
     setSort(type);
     setOpen(false);
   };
+
+  useEffect(()=> {
+    refetch();
+  },[sort])
 
   const apply = ()=>{
     refetch();
