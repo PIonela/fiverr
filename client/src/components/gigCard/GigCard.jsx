@@ -6,7 +6,7 @@ import newRequest from "../../utils/newRequest";
 
 const GigCard = ({ item }) => {
     const { isLoading, error, data } = useQuery({
-        queryKey: ["gigUser"],
+        queryKey: [item.userId],
         queryFn: () =>
             newRequest.get(`/users/${item.userId}`).then((res) => {
                 return res.data;
@@ -14,7 +14,7 @@ const GigCard = ({ item }) => {
     });
 
     return (
-        <Link to="/gig/123" className="link">
+        <Link to={`/gig/${item._id}`} className="link">
             <div className="gigCard">
                 <img src={item.cover} alt="" />
                 <div className="info">

@@ -19,12 +19,13 @@ function Gigs() {
     queryFn: () =>
       newRequest
         .get(
-          `/gigs${search}?min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          `/gigs${search ? `${search}&` : "?"}min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => {
           return res.data;
         }),
   });
+  console.log(search);
 
   const reSort = (type) => {
     setSort(type);
@@ -42,7 +43,7 @@ function Gigs() {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">Liverr > Graphics & Design ></span>
+        <span className="breadcrumbs">Liverr {">"} Graphics & Design {">"}</span>
         <h1>AI Artists</h1>
         <p>
           Explore the boundaries of art and technology with Liverr's AI artists
