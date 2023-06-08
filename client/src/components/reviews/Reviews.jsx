@@ -4,7 +4,7 @@ import Review from "../review/Review";
 import newRequest from "../../utils/newRequest";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-function Reviews({ gigId }) {
+const Reviews = ({ gigId }) => {
     const queryClient = useQueryClient();
     const { isLoading, error, data } = useQuery({
         queryKey: ["reviews"],
@@ -41,7 +41,7 @@ function Reviews({ gigId }) {
             )}
             <div className="add">
                 <h3>Add a review</h3>
-                <form action="" onSubmit={handleSubmit}>
+                <form action="" onSubmit={handleSubmit} className="addForm">
                     <input type="text" placeholder="Write your opinion" />
                     <select name="" id="">
                         <option value="1">1</option>
@@ -50,6 +50,7 @@ function Reviews({ gigId }) {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    <button>Send</button>
                 </form>
             </div>
         </div>
