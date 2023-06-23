@@ -21,14 +21,14 @@ const Reviews = ({ gigId }) => {
         onSuccess:() => {
             queryClient.invalidateQueries(["reviews"])
         }
-      })
+    });
 
     const handleSubmit = e => {
         e.preventDefault();
         const desc = e.target[0].value;
         const star = e.target[1].value;
         mutation.mutate({gigId, desc, star})
-    }
+    };
 
     return (
         <div className="reviews">
